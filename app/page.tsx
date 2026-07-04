@@ -609,6 +609,15 @@ export default function Home() {
               Իմանալ ավելին՝ ինչպես ստեղծել թեստ PDF ֆայլից
             </a>
           </p>
+          <p className="mt-4 leading-8 text-slate-600">
+            Փնտրու՞մ եք AI գործիք ուսուցիչների համար։{" "}
+            <a
+              href="/ai-test-generator"
+              className="font-semibold text-cyan-700 hover:text-cyan-800"
+            >
+              Կարդալ ավելին AI թեստերի գեներատորի մասին
+            </a>
+          </p>
         </section>
 
         <section
