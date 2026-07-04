@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/lib/analytics";
 import {
   KeyboardEvent,
   MouseEvent,
@@ -208,6 +209,14 @@ export default function DownloadModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-2xl bg-cyan-600 px-5 text-sm font-bold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                onClick={() => {
+                  trackEvent("download_clicked", {
+                    source: "download_modal",
+                    file_type: download.type,
+                    with_answers: download.withAnswers,
+                    label: download.label,
+                  });
+                }}
               >
                 Ներբեռնել
               </a>
@@ -225,7 +234,13 @@ export default function DownloadModal({
           </button>
           <button
             type="button"
-            onClick={onGenerateAnother}
+            onClick={() => {
+              trackEvent("generate_another_clicked", {
+                source: "download_modal",
+              });
+
+              onGenerateAnother();
+            }}
             className="inline-flex h-12 items-center justify-center rounded-2xl bg-slate-950 px-5 text-sm font-bold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-200"
           >
             Ստեղծել նոր թեստ

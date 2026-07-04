@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from "react";
 import ContactModal from "../components/ContactModal";
 import DownloadModal, { type DownloadItem } from "../components/DownloadModal";
+import { trackEvent } from "@/lib/analytics";
 
 type Difficulty = "mixed" | "easy" | "medium" | "hard";
 type QuestionType = "both" | "single" | "multiple";
@@ -247,7 +248,11 @@ export default function Home() {
       setSubscribeMessage(
         "Շնորհակալություն։ Ձեր էլ․ հասցեն պահպանվեց, և մենք կտեղեկացնենք նոր հնարավորությունների մասին։",
       );
+      trackEvent("subscribe_success", { source: "homepage", });
     } catch (caughtError) {
+      trackEvent("subscribe_error", {
+        source: "homepage",
+      });
       setSubscribeError(
         caughtError instanceof Error
           ? caughtError.message
@@ -260,6 +265,8 @@ export default function Home() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    trackEvent("generate_quiz_clicked", { source: "homepage", });
 
     if (!pdf) {
       setError("Խնդրում ենք նախ ընտրել PDF ֆայլ։");
@@ -312,10 +319,15 @@ export default function Home() {
 
       window.localStorage.setItem(USAGE_STORAGE_KEY, String(nextUsageCount));
 
+      trackEvent("quiz_generated_success", {source: "homepage",});
+
       setDownloads(data.downloads);
       setDownloadTitle(data.title);
       setIsDownloadModalOpen(true);
     } catch (caughtError) {
+      trackEvent("quiz_generated_error", {
+        source: "homepage",
+      });
       setError(
         caughtError instanceof Error
           ? caughtError.message
