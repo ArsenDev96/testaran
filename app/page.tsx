@@ -590,6 +590,27 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mx-auto mt-20 max-w-5xl px-6">
+          <h2 className="text-3xl font-bold text-slate-950">
+            Ինչու օգտագործել Testaran-ը
+          </h2>
+
+          <p className="mt-4 leading-8 text-slate-600">
+            Testaran-ը AI թեստերի գեներատոր է, որը օգնում է ուսուցիչներին PDF
+            դասանյութերից արագ ստեղծել հայերեն թեստեր։
+          </p>
+
+          <p className="mt-4 leading-8 text-slate-600">
+            Ցանկանու՞մ եք հասկանալ քայլ առ քայլ գործընթացը։{" "}
+            <a
+              href="/pdf-to-quiz"
+              className="font-semibold text-cyan-700 hover:text-cyan-800"
+            >
+              Իմանալ ավելին՝ ինչպես ստեղծել թեստ PDF ֆայլից
+            </a>
+          </p>
+        </section>
+
         <section
           id="benefits"
           className="mx-auto mt-20 w-full max-w-5xl scroll-mt-24"
