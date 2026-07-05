@@ -1,6 +1,5 @@
 "use client";
 
-import { trackEvent } from "@/lib/analytics";
 import {
   KeyboardEvent,
   MouseEvent,
@@ -9,6 +8,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { createPortal } from "react-dom";
+import { trackEvent } from "@/lib/analytics";
 
 export interface DownloadItem {
   type: string;
@@ -18,10 +18,19 @@ export interface DownloadItem {
   url: string;
 }
 
+export interface DownloadModalLabels {
+  defaultTitle: string;
+  description: string;
+  download: string;
+  close: string;
+  generateAnother: string;
+}
+
 interface DownloadModalProps {
   open: boolean;
   title?: string;
   downloads: DownloadItem[];
+  labels: DownloadModalLabels;
   onClose: () => void;
   onGenerateAnother: () => void;
 }
@@ -55,8 +64,9 @@ function getDownloadIcon(type: string) {
 
 export default function DownloadModal({
   open,
-  title = "✅ Թեստը հաջողությամբ ստեղծվեց",
+  title,
   downloads,
+  labels,
   onClose,
   onGenerateAnother,
 }: DownloadModalProps) {
@@ -168,10 +178,10 @@ export default function DownloadModal({
               id="download-modal-title"
               className="text-2xl font-bold leading-tight tracking-normal text-slate-950 sm:text-3xl"
             >
-              {title}
+              {title || labels.defaultTitle}
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
-              Կարող եք ներբեռնել անհրաժեշտ տարբերակը.
+              {labels.description}
             </p>
           </div>
 
@@ -179,7 +189,7 @@ export default function DownloadModal({
             type="button"
             onClick={onClose}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-xl leading-none text-slate-500 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-cyan-100"
-            aria-label="Փակել"
+            aria-label={labels.close}
           >
             ×
           </button>
@@ -208,7 +218,6 @@ export default function DownloadModal({
                 href={download.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center rounded-2xl bg-cyan-600 px-5 text-sm font-bold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-100"
                 onClick={() => {
                   trackEvent("download_clicked", {
                     source: "download_modal",
@@ -217,8 +226,9 @@ export default function DownloadModal({
                     label: download.label,
                   });
                 }}
+                className="inline-flex h-11 items-center justify-center rounded-2xl bg-cyan-600 px-5 text-sm font-bold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-100"
               >
-                Ներբեռնել
+                {labels.download}
               </a>
             </article>
           ))}
@@ -230,20 +240,14 @@ export default function DownloadModal({
             onClick={onClose}
             className="inline-flex h-12 items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-slate-100"
           >
-            Փակել
+            {labels.close}
           </button>
           <button
             type="button"
-            onClick={() => {
-              trackEvent("generate_another_clicked", {
-                source: "download_modal",
-              });
-
-              onGenerateAnother();
-            }}
+            onClick={onGenerateAnother}
             className="inline-flex h-12 items-center justify-center rounded-2xl bg-slate-950 px-5 text-sm font-bold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-200"
           >
-            Ստեղծել նոր թեստ
+            {labels.generateAnother}
           </button>
         </div>
       </div>
