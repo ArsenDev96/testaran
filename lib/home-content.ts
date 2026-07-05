@@ -109,13 +109,15 @@ export const homeContent = {
     ],
 
     seoLinks: {
-      title: "Ինչու օգտագործել Testaran-ը",
-      description:
-        "Testaran-ը AI թեստերի գեներատոր է, որը օգնում է ուսուցիչներին PDF դասանյութերից արագ ստեղծել հայերեն թեստեր։",
-      pdfText: "Ցանկանու՞մ եք հասկանալ քայլ առ քայլ գործընթացը։",
-      pdfLink: "Իմանալ ավելին՝ ինչպես ստեղծել թեստ PDF ֆայլից",
-      aiText: "Փնտրու՞մ եք AI գործիք ուսուցիչների համար։",
-      aiLink: "Կարդալ ավելին AI թեստերի գեներատորի մասին",
+        title: "Ինչու օգտագործել Testaran-ը",
+        description:
+            "Testaran-ը AI թեստերի գեներատոր է, որը օգնում է ուսուցիչներին PDF դասանյութերից արագ ստեղծել հայերեն թեստեր։",
+        pdfText: "Ցանկանու՞մ եք հասկանալ քայլ առ քայլ գործընթացը։",
+        pdfLink: "Իմանալ ավելին՝ ինչպես ստեղծել թեստ PDF ֆայլից",
+        pdfHref: "/pdf-to-quiz",
+        aiText: "Փնտրու՞մ եք AI գործիք ուսուցիչների համար։",
+        aiLink: "Կարդալ ավելին AI թեստերի գեներատորի մասին",
+        aiHref: "/ai-test-generator",
     },
 
     benefitsTitle: "Թեստերի գեներատոր ուսուցիչների համար",
@@ -287,13 +289,15 @@ export const homeContent = {
     ],
 
     seoLinks: {
-      title: "Why use Testaran?",
-      description:
-        "Testaran is an AI quiz generator and PDF quiz generator for teachers who need to create Armenian quizzes from learning materials.",
-      pdfText: "Want to understand the step-by-step process?",
-      pdfLink: "Learn how to create a quiz from a PDF",
-      aiText: "Looking for an AI tool for teachers?",
-      aiLink: "Learn more about the AI quiz generator",
+        title: "Why use Testaran?",
+        description:
+            "Testaran is an AI quiz generator that helps teachers create Armenian quizzes from PDF learning materials.",
+        pdfText: "Want to understand the step-by-step process?",
+        pdfLink: "Learn how to create a quiz from a PDF",
+        pdfHref: "/en/pdf-to-quiz",
+        aiText: "Looking for an AI tool for teachers?",
+        aiLink: "Learn more about the AI quiz generator",
+        aiHref: "/en/ai-test-generator",
     },
 
     benefitsTitle: "Quiz generator for teachers",

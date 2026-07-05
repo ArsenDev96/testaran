@@ -18,17 +18,17 @@ export default function SeoLinksSection({ content }: SeoLinksSectionProps) {
       <p className="mt-4 leading-8 text-slate-600">
         {content.seoLinks.pdfText}{" "}
         <a
-          href="/pdf-to-quiz"
-          className="font-semibold text-cyan-700 hover:text-cyan-800"
-        >
-          {content.seoLinks.pdfLink}
+            href={content.seoLinks.pdfHref}
+            className="font-semibold text-cyan-700 hover:text-cyan-800"
+            >
+            {content.seoLinks.pdfLink}
         </a>
       </p>
 
       <p className="mt-4 leading-8 text-slate-600">
         {content.seoLinks.aiText}{" "}
         <a
-          href="/ai-test-generator"
+          href={content.seoLinks.aiHref}
           className="font-semibold text-cyan-700 hover:text-cyan-800"
         >
           {content.seoLinks.aiLink}
